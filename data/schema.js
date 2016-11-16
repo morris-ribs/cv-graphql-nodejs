@@ -1,4 +1,4 @@
-import { GraphQLSchema, GraphQLObjectType, GraphQLList, GraphQLString } from 'graphql';
+import { GraphQLSchema, GraphQLObjectType, GraphQLList, GraphQLString, GraphQLNonNull } from 'graphql';
 
 let Schema = (db) => {
   // declaration of our type Candidate
@@ -7,7 +7,8 @@ let Schema = (db) => {
       fields: () => ({ // description of the fields { name_of_the_field: type_of_the_field }
           _id: { type: GraphQLString },
           name: { type: GraphQLString },
-          nick: { type: GraphQLString }
+          nick: { type: GraphQLString },
+          email: { type: GraphQLString }
       })
   });
 
@@ -18,7 +19,19 @@ let Schema = (db) => {
         fields: () => ({
             candidates: {
                 type: new GraphQLList(candidateType),
-                resolve: () => db.collection("candidates").find({}).toArray()
+                args: {
+                    name: {
+                        name: 'name',
+                        type: new GraphQLNonNull(GraphQLString)
+                    }
+                },
+                resolve: (root, {name}) => 
+                { 
+                    if (name != "")
+                        return db.collection("candidates").find({"name": name}).toArray();
+                    
+                    return db.collection("candidates").find({}).toArray();
+                }
                 // function that GraphQL will execute in order to resolve the field
                 // here we get all the candidates from the DB
             }
