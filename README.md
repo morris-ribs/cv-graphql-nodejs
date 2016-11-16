@@ -1,8 +1,30 @@
 # cv-graphql-nodejs
-Under construction, but already with some magic happening ;)
+This is a GraphQL server, coded in NodeJs, that makes queries to retrieves data from a MongoDB instance.
 
-Shortly, what I can tell you is that this is a GraphQL server, coded in NodeJs, that makes queries to retrieves data from a MongoDB instance.
+# Pre-requisites
+- Install MongoDB: https://docs.mongodb.com/manual/installation/?jmp=footer
 
-Ideally to be called by a React-GraphQL client (to be developed afterwards :) )
+## Launch mongo daemon!
 
-As soon as the project is fully fnished, I update this with a nice step-by-step ;)
+After installing your MongoDB instance, open a cmd window and run the following command:
+```
+# launch mmongo daemon
+$ mongod
+```
+
+Your MongoDB instance is up and ready to treat your requests!
+
+## Insert dummy data
+
+Launch Mongo client, running 
+```
+# launch mmongo daemon
+$ mongo
+```
+
+Then, create a db called 'candidates_test'
+```
+$ use candidates_test
+```
+
+Finally, insert the dummy data: https://github.com/morris-ribs/cv-server-Go/blob/master/candidate_example.json
