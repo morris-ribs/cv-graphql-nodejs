@@ -30,7 +30,13 @@ Finally, paste the contents of https://github.com/morris-ribs/cv-server-Go/blob/
 
 # 3) Run the server
 
-In the root folder of your project, run
+In the root folder of the project, run
 ```
 $ npm start -s
 ```
+
+It is going to start the server on the port 3000
+
+# 4) Test it
+
+In a web browser, open http://localhost:3000/graphql/
