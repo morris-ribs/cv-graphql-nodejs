@@ -1,4 +1,4 @@
-import { GraphQLSchema, GraphQLObjectType, GraphQLList, GraphQLString, GraphQLNonNull } from 'graphql';
+import { GraphQLSchema, GraphQLObjectType, GraphQLList, GraphQLString } from 'graphql';
 
 let Schema = (db) => {
   // declaration of our type Candidate
@@ -19,15 +19,15 @@ let Schema = (db) => {
         fields: () => ({
             candidates: {
                 type: new GraphQLList(candidateType),
-                args: {
+                args: { // for filtering
                     name: {
                         name: 'name',
-                        type: new GraphQLNonNull(GraphQLString)
+                        type: GraphQLString
                     }
                 },
                 resolve: (root, {name}) => 
                 { 
-                    if (name != "")
+                    if (name != null && name != "")
                         return db.collection("candidates").find({"name": name}).toArray();
                     
                     return db.collection("candidates").find({}).toArray();
