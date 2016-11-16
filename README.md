@@ -26,3 +26,11 @@ $ use candidates_test
 ```
 
 Finally, paste the contents of https://github.com/morris-ribs/cv-server-Go/blob/master/candidate_example.json
+
+
+# 3) Run the server
+
+In the root folder of your project, run
+```
+$ npm start -s
+```
